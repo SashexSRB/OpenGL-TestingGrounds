@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 
+#include "tesseractTest.h"
 #include "renderer.h"
 
 #define WIDTH 1200
@@ -37,7 +38,7 @@ int main(int argc, char **argv) {
         float delta = now - last;
         last = now;
 
-        angle += .7f * delta;
+        angle += 2.f * delta;
 
         glfwPollEvents();
         snprintf(title, 128, "DOOT | %.0f", 1.f / delta);
@@ -45,29 +46,8 @@ int main(int argc, char **argv) {
 
         rendererClear();
 
-        rendererDrawLine(
-            (vec2_t){0.f, 0.f},
-            (vec2_t){WIDTH, HEIGHT},
-            5.f,
-            (vec4_t){0.f, 0.f, 1.f, 1.f}
-        );
-        rendererDrawLine(
-            (vec2_t){WIDTH, 0.f},
-            (vec2_t){0.f, HEIGHT},
-            5.f,
-            (vec4_t){0.f, 0.f, 1.f, 1.f}
-        );
-        rendererDrawPoint(
-            (vec2_t){100.f, 100.f},
-            2.f,
-            (vec4_t){1.f, 1.f, 1.f, 1.f}
-        );
-        rendererDrawQuad(
-            (vec2_t){900.f, 100.f},
-            (vec2_t){50.f, 50.f},
-            angle,
-            (vec4_t){1.f, 1.f, 0.f, 1.f}
-        );
+        drawTesseract(angle);
+
         glfwSwapBuffers(window);
     }
 

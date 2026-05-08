@@ -14,7 +14,8 @@ add_executable(doot main.c
         vector.h
         matrix.h
         vector.c
-        matrix.c)
+        matrix.c
+        tesseractTest.h)
 
 target_link_libraries(doot PRIVATE OpenGL::GL GLEW::GLEW glfw m)
 

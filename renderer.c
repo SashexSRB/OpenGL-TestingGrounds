@@ -1,4 +1,7 @@
 #include "renderer.h"
+
+#include <math.h>
+
 #include "matrix.h"
 #include "glHelpers.h"
 #include <GL/glew.h>
@@ -58,6 +61,24 @@ void rendererDrawQuad(vec2_t center, vec2_t size, float angle, vec4_t color) {
     mat4_t translation = mat4Translate((vec3_t){center.x, center.y, 0.f});
     mat4_t scale = mat4Scale((vec3_t){size.x, size.y, 1.f});
     mat4_t rotation = mat4Rotate((vec3_t){0.f, 0.f, 1.f}, angle);
+    mat4_t model = mat4Multiply(mat4Multiply(scale, rotation), translation);
+
+    glUniform4fv(colorLocation, 1, color.v);
+    glUniformMatrix4fv(modelLocation, 1, GL_FALSE, model.v);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
+}
+
+void rendererDrawLine(vec2_t p0, vec2_t p1, float width, vec4_t color) {
+    float x = p1.x - p0.x;
+    float y = p0.y - p1.y;
+
+    float r = sqrtf(x * x * y * y);
+    float theta = atan2f(y, x);
+
+
+    mat4_t translation = mat4Translate((vec3_t){(p0.x + p1.x) / 2.f, (p0.y + p1.y) / 2.f, 0.f});
+    mat4_t scale = mat4Scale((vec3_t){r, width, 1.f});
+    mat4_t rotation = mat4Rotate((vec3_t){0.f, 0.f, 1.f}, theta);
     mat4_t model = mat4Multiply(mat4Multiply(scale, rotation), translation);
 
     glUniform4fv(colorLocation, 1, color.v);

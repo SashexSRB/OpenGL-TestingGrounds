@@ -69,7 +69,7 @@ mat4_t mat4Rotate(vec3_t axis, float angle) {
         .b2 = t * y * y + c,
         .b3 = t * y * z - s * x,
         .b4 = 0.0f,
-        .c1 = t * y * z - s * y,
+        .c1 = t * x * z - s * y,
         .c2 = t * y * z + s * x,
         .c3 = t * z * z + c,
         .c4 = 0.0f,

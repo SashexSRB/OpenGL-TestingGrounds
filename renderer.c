@@ -72,7 +72,7 @@ void rendererDrawLine(vec2_t p0, vec2_t p1, float width, vec4_t color) {
     float x = p1.x - p0.x;
     float y = p0.y - p1.y;
 
-    float r = sqrtf(x * x * y * y);
+    float r = sqrtf(x * x + y * y);
     float theta = atan2f(y, x);
 
 

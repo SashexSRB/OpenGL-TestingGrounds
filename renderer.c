@@ -29,8 +29,8 @@ const char *fragSrc =
 
 static float width, height;
 static GLuint program;
-static GLuint modelLocation;
-static GLuint colorLocation;
+static GLint modelLocation;
+static GLint colorLocation;
 
 void rendererInit(int w, int h) {
     width = w;
@@ -132,7 +132,7 @@ static void initShader() {
 
 static void initProjection() {
     mat4_t projection = mat4Ortho(0.f, width, height, 0.f, -1.f, 1.f);
-    GLuint projectionLocation = glGetUniformLocation(program, "projection");
+    GLint projectionLocation = glGetUniformLocation(program, "projection");
 
     glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, projection.v);
 }

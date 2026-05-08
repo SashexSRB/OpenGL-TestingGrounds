@@ -63,8 +63,8 @@ static inline vec2d_t project(vec4d_t v) {
     // 3D -> 2D
     float z3p = 1.f / (z_dist - z3);
     return (vec2d_t){
-        WIDTH/2  + x3 * z3p * 200.f,
-        HEIGHT/2 + y3 * z3p * 200.f
+        WIDTH/2  + x3 * z3p * 400.f,
+        HEIGHT/2 + y3 * z3p * 400.f
     };
 }
 
@@ -93,7 +93,7 @@ static inline void drawTesseract(float angle) {
         rendererDrawLine(
             (vec2_t){pa.x, pa.y},
             (vec2_t){pb.x, pb.y},
-            1.5f,
+            2.f,
             (vec4_t){0.2f, 0.8f, 1.f, 1.f}
         );
     }

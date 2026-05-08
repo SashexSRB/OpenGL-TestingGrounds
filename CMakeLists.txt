@@ -10,7 +10,11 @@ add_executable(doot main.c
         renderer.h
         renderer.c
         glHelpers.h
-        glHelpers.c)
+        glHelpers.c
+        vector.h
+        matrix.h
+        vector.c
+        matrix.c)
 
-target_link_libraries(doot PRIVATE OpenGL::GL GLEW::GLEW glfw)
+target_link_libraries(doot PRIVATE OpenGL::GL GLEW::GLEW glfw m)
 

@@ -1,3 +1,4 @@
+#include <math.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
@@ -34,11 +35,23 @@ int main(int argc, char **argv) {
         float delta = now - last;
         last = now;
 
+        glfwPollEvents();
         snprintf(title, 128, "DOOT | %.0f", 1.f / delta);
         glfwSetWindowTitle(window, title);
 
-        glfwPollEvents();
         rendererClear();
+
+        rendererDrawPoint(
+            (vec2_t){WIDTH / 2.f, HEIGHT / 2.f}, 5.f,
+            (vec4_t){1.f, 1.f, 1.f, 1.f}
+        );
+
+        rendererDrawQuad(
+            (vec2_t){100.f, 100.f},
+            (vec2_t){40.f, 40.f},
+            M_PI_4,
+            (vec4_t){1.f, 1.f, 0.f, 1.f}
+        );
         glfwSwapBuffers(window);
     }
 
